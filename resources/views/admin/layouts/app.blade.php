@@ -10,6 +10,7 @@
     <title>{{ config('app.name') }} - @yield('title')</title>
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body>
@@ -25,27 +26,28 @@
                         Menú
                     </li>
 
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="index.html">
+                    <li class="sidebar-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html">
+                    <li class="sidebar-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="">
                             <i class="align-middle" data-feather="user"></i> <span class="align-middle">Usuarios</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-sign-in.html">
-                            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Notas</span>
+                    <li class="sidebar-item {{ request()->routeIs('admin.notes.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="">
+                            <i class="align-middle" data-feather="check-square"></i> <span
+                                class="align-middle">Notas</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-sign-up.html">
+                    <li class="sidebar-item {{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Clientes</span>
                         </a>
                     </li>
@@ -69,14 +71,16 @@
 
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                 data-bs-toggle="dropdown">
-                                <img src="{{ asset('assets/admin/img/avatar.jpg') }}" class="avatar img-fluid rounded me-1"
-                                    alt="{{ auth()->user()->name }}" /> <span class="text-dark">{{ auth()->user()->name }}</span>
+                                <img src="{{ asset('assets/admin/img/avatar.jpg') }}"
+                                    class="avatar img-fluid rounded me-1" alt="{{ auth()->user()->name }}" /> <span
+                                    class="text-dark">{{ auth()->user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-                                        data-feather="user"></i> Perfil</a>
+                                <a class="dropdown-item" href="{{ route('admin.profile.personal_information') }}"><i
+                                        class="align-middle me-1" data-feather="user"></i> Perfil</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" ref="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
+                                <a class="dropdown-item" ref="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -113,6 +117,7 @@
     </div>
 
     <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>
