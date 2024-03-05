@@ -13,8 +13,8 @@
                     @csrf
 
                     <div class="row">
-                        <div class="col-6">
-                            <label for="name">Nombre</label>
+                        <div class="col-md-6 col-xs-12 mb-3">
+                            <label class="form-label" for="name">Nombre</label>
                             <input type="text" name="name" id="name"
                                 class="form-control @error('name') is-invalid @enderror"
                                 value="{{ old('name', auth()->user()->name) }}">
@@ -25,8 +25,8 @@
                             @enderror
                         </div>
 
-                        <div class="col-6">
-                            <label for="email">Correo electrónico</label>
+                        <div class="col-md-6 col-xs-12 mb-3">
+                            <label class="form-label" for="email">Correo electrónico</label>
                             <input type="email" name="email" id="email"
                                 class="form-control @error('email') is-invalid @enderror"
                                 value="{{ old('email', auth()->user()->email) }}">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary mt-3"><i class="align-middle" data-feather="check"></i> Guardar</button>
+                    <button class="btn btn-primary"><i class="align-middle" data-feather="check"></i> Guardar</button>
                 </form>
             </div>
         </div>
@@ -50,8 +50,8 @@
                     @csrf
 
                     <div class="row">
-                        <div class="col-6">
-                            <label for="current_password">Contraseña actual</label>
+                        <div class="col-md-6 col-xs-12 mb-3">
+                            <label class="form-label" for="current_password">Contraseña actual</label>
                             <input type="password" name="current_password" id="current_password"
                                 class="form-control @error('current_password') is-invalid @enderror">
                             @error('current_password')
@@ -61,8 +61,8 @@
                             @enderror
                         </div>
 
-                        <div class="col-6">
-                            <label for="new_password">Nueva contraseña</label>
+                        <div class="col-md-6 col-xs-12 mb-3">
+                            <label class="form-label" for="new_password">Nueva contraseña</label>
                             <input type="password" name="new_password" id="new_password"
                                 class="form-control @error('new_password') is-invalid @enderror">
                             @error('new_password')
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary mt-3"><i class="align-middle" data-feather="check"></i> Guardar</button>
+                    <button class="btn btn-primary"><i class="align-middle" data-feather="check"></i> Guardar</button>
                 </form>
             </div>
         </div>

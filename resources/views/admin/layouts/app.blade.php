@@ -10,6 +10,7 @@
     <title>{{ config('app.name') }} - @yield('title')</title>
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    @rappasoftTableStyles
     @yield('css')
 </head>
 
@@ -33,20 +34,27 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="">
+                    <li class="sidebar-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('users.index') }}">
                             <i class="align-middle" data-feather="user"></i> <span class="align-middle">Usuarios</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->routeIs('admin.notes.*') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="">
-                            <i class="align-middle" data-feather="check-square"></i> <span
-                                class="align-middle">Notas</span>
+                            <i class="align-middle" data-feather="align-justify"></i> <span
+                                class="align-middle">Categorías</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->routeIs('articles.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="">
+                            <i class="align-middle" data-feather="check-square"></i> <span
+                                class="align-middle">Contenido</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ request()->routeIs('clients.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Clientes</span>
                         </a>
@@ -117,6 +125,7 @@
     </div>
 
     <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+    @rappasoftTableScripts
     @yield('js')
 </body>
 
