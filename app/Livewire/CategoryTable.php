@@ -6,13 +6,13 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
-use App\Models\User;
+use App\Models\Category;
 
-class UserTable extends DataTableComponent
+class CategoryTable extends DataTableComponent
 {
     public function builder(): Builder
     {
-        return User::query()->orderBy('id', 'DESC');
+        return Category::query()->orderBy('id', 'DESC');
     }
 
     public function configure(): void
@@ -28,15 +28,12 @@ class UserTable extends DataTableComponent
             Column::make("Nombre", "name")
                 ->sortable()
                 ->searchable(),
-            Column::make("Correo electrónico", "email")
-                ->sortable()
-                ->searchable(),
             DateColumn::make("Creación", "created_at")
                 ->sortable()
                 ->outputFormat('d-m-Y'),
             Column::make('Acciones')
                 ->label(function ($row, Column $column) {
-                    return view('admin.users.table_actions', compact('row'));
+                    return view('admin.categories.table_actions', compact('row'));
                 }),
         ];
     }

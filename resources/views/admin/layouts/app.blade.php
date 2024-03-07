@@ -41,21 +41,21 @@
                     </li>
 
                     <li class="sidebar-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="">
+                        <a class="sidebar-link" href="{{ route('categories.index') }}">
                             <i class="align-middle" data-feather="align-justify"></i> <span
                                 class="align-middle">Categorías</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item {{ request()->routeIs('articles.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="">
+                        <a class="sidebar-link" href="{{ route('articles.index') }}">
                             <i class="align-middle" data-feather="check-square"></i> <span
                                 class="align-middle">Contenido</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item {{ request()->routeIs('clients.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="">
+                        <a class="sidebar-link" href="{{ route('clients.index') }}">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Clientes</span>
                         </a>
                     </li>

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Editar usuario
+    Editar registro
 @endsection
 
 @section('content')

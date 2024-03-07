@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Nuevo usuario
+    Nuevo registro
 @endsection
 
 @section('content')

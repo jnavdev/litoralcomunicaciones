@@ -6,13 +6,17 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
-use App\Models\User;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
+use App\Models\Article;
 
-class UserTable extends DataTableComponent
+class ArticleTable extends DataTableComponent
 {
     public function builder(): Builder
     {
-        return User::query()->orderBy('id', 'DESC');
+        return Article::query()
+            ->with('category')
+            ->orderBy('id', 'DESC')
+            ->select('articles.*');
     }
 
     public function configure(): void
@@ -25,10 +29,19 @@ class UserTable extends DataTableComponent
         return [
             Column::make("#", "id")
                 ->sortable(),
-            Column::make("Nombre", "name")
+            ImageColumn::make('Imágen', 'image')
+                ->location(
+                    fn ($row) => asset("storage/{$row->image}")
+                )
+                ->attributes(fn ($row) => [
+                    'class' => 'rounded',
+                    'alt' => 'Imágen ' . $row->title,
+                    'style' => 'width: 120px;'
+                ]),
+            Column::make("Título", "title")
                 ->sortable()
                 ->searchable(),
-            Column::make("Correo electrónico", "email")
+            Column::make("Categoría", "category.name")
                 ->sortable()
                 ->searchable(),
             DateColumn::make("Creación", "created_at")
@@ -36,7 +49,7 @@ class UserTable extends DataTableComponent
                 ->outputFormat('d-m-Y'),
             Column::make('Acciones')
                 ->label(function ($row, Column $column) {
-                    return view('admin.users.table_actions', compact('row'));
+                    return view('admin.articles.table_actions', compact('row'));
                 }),
         ];
     }
